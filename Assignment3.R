@@ -2,7 +2,6 @@ library(readr)
 library(ggplot2)
 library(tidyverse)
 library(scales)
-library(directlabels)
 load(file = "data/QMEEdata.RData")
 #data needed some more cleaning and a name change
 FlyvsPreds <- (data_2 %>% mutate(temperature=as.factor(temperature), survival = as.factor(survival)))
