@@ -1,0 +1,18 @@
+MMV Question
+Probabilities of:
+- having MMV = 0.01
+- not having MMV = 0.99
+-positive test and has MMV = 0.01 * 1 = 0.01
+-positive test and doesn't have MMV = 0.05 * 0.99 = 0.0495
+-negative test and has MMv = 0.01 * 0 = 0
+-negative test and doesn't have MMV = 0.95 * 0.99 = 0.9405
+
+-random individal (got a positive test)
+-probability of MMV given a positive test
+0.01/(0.01+0.0495) = 0.168 = 16.8%
+
+-friend (got a positive test)
+-probability of having a positive test
+0.01 + 0.0495 / (0.01 + 0.0495 + 0 + 0.9405) = 5.95%
+I was going to tell my friend that there was only a 6% chance of getting a positive test, but it seems more comforting to tell the that even with a positive test there is only about a 17% chance of having the virus. 
+***I'm not quite sure how this is different from the first question. Is it different because this is not a random individual and it is someone we know so we can gather more information on whether they have the virus (for example if it's genetic we would know if their family members have it)?
