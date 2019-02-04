@@ -62,3 +62,5 @@ FlyvsPreds <- (data_2 %>% mutate(temperature=as.factor(temperature), survival = 
 #would like to take out those two points on the "T" portion of graph
 #tried changing to filter(trait != "N", trait == "T" & length_fix < 1.5) but couldn't figure out how to keep traits "L" and "W".
 ## JD: Tried that. Also added scales="free" (which I copied from you, although I guess I've seen it before).
+
+## Grade: good (2/3)
