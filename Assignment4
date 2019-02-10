@@ -1,8 +1,17 @@
 Biological Question:
 Is natural selection (predation) influenced by individual fly size?
 
+*BMB*: the answer is "yes" ... maybe you mean "how is ..."
+
+
 Hypothesis:
-Individuals that are larger will be able to evade predators more easily and smaller individuals will be less likely to survive. Therefore, the selection gradient will be positive with increasing fly size.  
+Individuals that are larger will be able to evade predators more easily and smaller individuals will be less likely to survive. Therefore, the selection gradient will be positive with increasing fly size.
+
+*BMB*: doesn't this depend on context?  Surely increasing fly size isn't always advantageous, or we would have flies the size of elephants (unless we ran into genetic constraints)?
 
 Statistical Test:
 I will test this using logistic regression to see how trait size of the fly changes survivorship (the measure of fitness).
+
+*BMB*: are body size and survivorship the only things you know?  How do you measure body size (mass, length, ...)?  How might different measures of size change the meaning of the question?
+
+score: 2
