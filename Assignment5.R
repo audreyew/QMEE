@@ -2,14 +2,21 @@ library(dplyr)
 library(tidyverse)
 library(gtools)
 library(lmPerm)
+
 load(file = "data/QMEEdata.RData")
+
 #Hypothesis one:
 #The temperature at which the flies were reared has an effect on their adult size.
 #Since this is a larger dataset, we will subset for thorax size and use that.
+## JD: I think `filter` is "tidier" than subset
 TvsTemp <- data_2 %>% subset(trait == "T")
+
 #randomly assign the three temperature categories to thorax size
 #for this I tried to use the same code for the second hypothesis below but knew I needed to change "res[i]" and the calculation for my observed values
+## JD: Not really following
+
 #I tried to calculate the F statistic for this but I couldn't figure out how to do it without just using the anova function. 
+## JD: Nothing wrong with that -- but aov is kind of a weird function, might have been better with anova
 summary(lmp(length_fix~temperature, data = TvsTemp))
 
 anova <- aov(length_fix ~ temperature, data = TvsTemp)
@@ -39,3 +46,5 @@ pval2 <- 2*mean(res2 >= observed2)
 pval2
 ttest <- t.test(survival~treatment, data=TvsTemp, var.equal=TRUE)
 ttest
+
+## JD: Grade 2/3 (good)
