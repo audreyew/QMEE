@@ -14,7 +14,7 @@ ggplot(Thorax_adjust, aes(length_fix, survival, colour = treatment)) +
   scale_x_log10()
 #still not seeing anything interesting but let's explore more
 #survival is measured as number of days that an individual survived to a maximum of 6 days. 
-SizeSurvivalGLM <- glm(factor(survival) ~ length_fix*sex*treatment, data = Thorax_adjust, family = binomial(link = "logit"))
+SizeSurvivalGLM <- glm(survival ~ length_fix*sex*treatment, data = Thorax_adjust, family = binomial(link = "logit"))
 par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(SizeSurvivalGLM)
 summary(SizeSurvivalGLM)
