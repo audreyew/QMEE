@@ -33,6 +33,8 @@ wingdata <- with(wingtemp,
                             temperature = as.numeric(temperature),
                             sex = as.numeric(sex),
                             length_fix))
+## JD: I never knew you could specify your model as a function.
+## It confuses me, but I don't object.
 tempsexmodel <- function(){
   for (i in 1:N) {
     logmean0[i] <- b_temp[temperature[i]]
@@ -46,6 +48,9 @@ tempsexmodel <- function(){
   b_sex ~dnorm(0, 0.001) 
 }
 #leaving the priors as non-informative
+## JD: It's an interesting choice to have an exponential response 
+## but then a normal instead of lognormal distribution
+
 j1 <- jags(data = wingdata,
            inits = NULL,
            n.chains = 4,
@@ -62,6 +67,7 @@ xyplot(mm, layout = c(2,3))
 densityplot(mm, layout=c(2,3))
 #sex look alright, but the temperatures are a bit skewed
 #tried using n.iter and n.burnin to see if it changed but did not change the output
+# JD: It's not clear to me why skew would be bad.
 print(dwplot(j1))
 
 #how does this change if we give our priors a bit more info?
@@ -96,3 +102,6 @@ par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(freqtempsexmod)
 summary(freqtempsexmod)
 #models show quite different results
+## JD: Why did you exponentiate (equivalent I guess to log link)
+## in the Bayesian model but not in the frequentist??
+
