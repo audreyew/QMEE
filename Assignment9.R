@@ -7,6 +7,11 @@ library(ordinal)
 load(file = "data/QMEEdata.RData")
 (Thorax <- filter(FlyvsPreds, trait == "T", sex != "N", length_fix < 1.5))
 
+## JD: This is a very weird model. Usually we would try to pass zeroes and ones to a binomial model. 
+## I'm curious what you think this model is doing
+## Answer: it simply labels the first level (1) as failure and lumps all the other levels as success
+## I think. Don't do this; specify stuff instead of letting R make arbitrary decisions
+
 #trying to see if individual flies that are larger survive more days than smaller flies in the presence of a predator
 #using glmer because linear models from previous assignments were no good
 survivalmodel <- glmer(survival~length_fix*treatment*sex + (1|cage), data = Thorax, family = binomial)
@@ -33,14 +38,23 @@ survivalss$fixef
 #all optimizers that worked gave similar answers
 isSingular(survivalmodel)
 #plot
-(ggplot(Thorax, aes(length_fix, survival, colour =treatment)) +
+print(ggplot(Thorax, aes(length_fix, survival, colour =treatment)) +
     facet_wrap(~sex) +
     geom_point() +
     geom_smooth(data = cbind(Thorax, pred = predict(survivalmodel)), aes(y = pred)))
 #couldn't get the expand.grid function to work like in the example in class which I am assuming is why my no preditor fits are above the data
 #this model still doesn't seem like a good representation of the data
+## JD: Couldn't figure out any of this ¶. 
+## What were you trying to do and what is above the data?
+
 #try doing a mixed model with an ordinal model
-ordinalm <- clmm(survival ~ length_fix*treatment*sex + (1|temperature) + (1|cage), data = Thorax)
+## JD: This seems better matched to your data anyway
+## I kind of guess you want a random effect for individual!
+## That seems weird, but ordinal is going to treat each day as an observation 
+## (in some sense)
+## I'll try it out…
+ordinalm <- clmm(survival ~ length_fix*treatment*sex + (1|temperature) + (1|cage) + (1|Label), data = Thorax)
 summary(ordinalm)
 coef(summary(ordinalm))
-#could not figure out how to do diagnostics
+
+## Grade 2/3 good
