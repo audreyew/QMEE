@@ -12,6 +12,8 @@ load(file = "data/QMEEdata.RData")
 ## Answer: it simply labels the first level (1) as failure and lumps all the other levels as success
 ## I think. Don't do this; specify stuff instead of letting R make arbitrary decisions
 
+## JD: Always explain clearly when you drop things (as your length_fix filter above)
+
 #trying to see if individual flies that are larger survive more days than smaller flies in the presence of a predator
 #using glmer because linear models from previous assignments were no good
 survivalmodel <- glmer(survival~length_fix*treatment*sex + (1|cage), data = Thorax, family = binomial)
